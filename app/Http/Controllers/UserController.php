@@ -101,12 +101,23 @@ class UserController extends Controller
 
         //$users  = User::with('addressDelivery')->get();
 
-        $posts = $user->posts()->orderBy('id','desc')->take(2)->get();
+        /*$posts = $user->posts()->orderBy('id','desc')->take(2)->get();
 
         if($posts){
              echo '<h1>Posts</h1>';
             foreach($posts as $post){
                 echo "<p>$post->id - $post->title</p><hr>";
+            }
+        }*/
+
+        $comments = $user->commentsOnMyPost()->get();
+
+        if($comments){
+
+            echo '<h1>Comentarios nos meus artigos</h1>';
+
+            foreach($comments as $comment){
+                echo "Post: #$comment->id User: # $comment->user $comment->content <hr>";
             }
         }
 
