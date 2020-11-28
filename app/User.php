@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function addressDelivery(){
         return $this->hasOne(Address::class, 'user', 'id');
     }
+
+    public function posts(){
+        return $this->hasMany(Post::class,'author','id');
+    }
 }

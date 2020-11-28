@@ -47,12 +47,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        /*$user = User::find($id);
+        $user = User::find($id);
         echo "<h1>Dados do usuário</h1><br/>";
         echo "Nome do usuário: $user->name<br/>";
         echo "E-mail do usuário: $user->email<br/>";
 
-        $userAddress = $user->addressDelivery()->get()->first();
+        /*$userAddress = $user->addressDelivery()->get()->first();
 
         if($userAddress){
             echo "<h1>Endereço</h1>";
@@ -100,6 +100,15 @@ class UserController extends Controller
         //$user->addressDelivery()->createMany([$address_teste_1,$address_teste_2]);
 
         //$users  = User::with('addressDelivery')->get();
+
+        $posts = $user->posts()->orderBy('id','desc')->take(2)->get();
+
+        if($posts){
+             echo '<h1>Posts</h1>';
+            foreach($posts as $post){
+                echo "<p>$post->id - $post->title</p><hr>";
+            }
+        }
 
     }
 
