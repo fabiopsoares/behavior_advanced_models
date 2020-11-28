@@ -2,10 +2,10 @@
 
 namespace LaraDev\Http\Controllers;
 
-use LaraDev\Post;
 use Illuminate\Http\Request;
+use LaraDev\Category;
 
-class PostController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -46,26 +46,23 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
+        $category = Category::find($id);
 
-        echo "<h1>Post</h1>Titulo: ".$post->title."<hr>";
+        if($category){
 
-        $user = $post->author()->get()->first();
+            echo "<h1>$category->name</h1><br/>";
 
-        if($user){
+            $posts = $category->posts()->get();
 
-            echo "<h1>Usuario</h1>$user->name";
-        }
 
-        $postCategories = $post->categories()->get();
+            if($posts){
 
-        if($postCategories){
-
-            echo '<h1>Categorias</h1><br/>';
-
-            foreach($postCategories as $category){
-                echo "Categoria: #$category->id $category->name <br/>";
+                foreach($posts as $post){
+                    echo "<h1>Post</h1>Titulo: ".$post->title."<hr>";
+                }
             }
+        }else{
+            echo '<h1>Categoria não encontrada</h1>';
         }
     }
 

@@ -11,6 +11,7 @@
 |
 */
 
+Route::resource('categories', 'CategoryController');
 
 Route::resource('users', 'UserController');
 
